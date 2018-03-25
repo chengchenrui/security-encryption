@@ -7,7 +7,7 @@ import org.apache.commons.codec.binary.Base64;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-public class Base46Utils {
+public class Base64Utils {
 
     private static String src = "chengchenrui security basse64";
 
