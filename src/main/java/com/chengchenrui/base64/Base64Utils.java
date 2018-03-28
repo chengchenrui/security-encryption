@@ -25,6 +25,9 @@ public class Base64Utils {
         }
     }
 
+    /**
+     * 建议使用cc
+     */
     public static void commonsCodecBase64() {
         byte[] encodeBytes = Base64.encodeBase64(src.getBytes());
         System.out.println("encode：" + new String(encodeBytes));
