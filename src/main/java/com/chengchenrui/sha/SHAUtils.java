@@ -2,11 +2,14 @@ package com.chengchenrui.sha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.bouncycastle.crypto.Digest;
 import org.bouncycastle.crypto.digests.SHA1Digest;
 import org.bouncycastle.crypto.digests.SHA224Digest;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class SHAUtils {
 
@@ -40,11 +43,21 @@ public class SHAUtils {
             .println("BC  sha-224：" + org.bouncycastle.util.encoders.Hex.toHexString(sha224Bytes));
     }
 
+    public static void bcSHA_224_2(){
+        Security.addProvider(new BouncyCastleProvider());
+        // ...
+    }
+
+    public static void ccSHA1(){
+        System.out.println("cc  sha1 -1："+DigestUtils.sha1Hex(src.getBytes()));
+        System.out.println("cc  sha1 -2："+DigestUtils.sha1Hex(src));
+    }
 
 
     public static void main(String[] args) {
         jdkSHA_1();
         bcSHA_1();
         bcSHA_224();
+        ccSHA1();
     }
 }
