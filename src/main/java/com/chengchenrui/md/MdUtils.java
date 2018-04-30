@@ -11,6 +11,11 @@ import org.bouncycastle.crypto.digests.MD4Digest;
 import org.bouncycastle.crypto.digests.MD5Digest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+/**
+ * 消息摘要算法
+ * @author chengchenrui
+ * @version Id: DES3Utils.java, v 0.1 2018/4/30 20:31 chengchenrui Exp $$
+ */
 public class MdUtils {
 
     private static String src = "chengchenrui security md";

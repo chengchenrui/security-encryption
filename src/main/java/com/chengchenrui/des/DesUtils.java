@@ -1,5 +1,7 @@
 package com.chengchenrui.des;
 
+import java.security.Security;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -9,9 +11,8 @@ import javax.crypto.spec.DESKeySpec;
 import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import java.security.Security;
-
 /**
+ * 对称加密算法
  * @author chengchenrui
  * @version Id: DesUtils.java, v 0.1 2018/3/28 23:03 chengchenrui Exp $$
  */
@@ -40,7 +41,7 @@ public class DesUtils {
             System.out.println("jdk des encrypt：" + Hex.encodeHexString(result));
 
             //解密
-            cipher.init(Cipher.DECRYPT_MODE,convertSecretKey);
+            cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
             result = cipher.doFinal(result);
             System.out.println("jdk des decrypt：" + new String(result));
 
@@ -52,12 +53,12 @@ public class DesUtils {
     /**
      * 建议使用这种
      */
-    public static void bcDES(){
+    public static void bcDES() {
 
         try {
             Security.addProvider(new BouncyCastleProvider());
             //生成key
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("DES","BC");
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("DES", "BC");
             keyGenerator.init(56);
             SecretKey secretKey = keyGenerator.generateKey();
             byte[] bytesKey = secretKey.getEncoded();
@@ -74,7 +75,7 @@ public class DesUtils {
             System.out.println("bc  des encrypt：" + Hex.encodeHexString(result));
 
             //解密
-            cipher.init(Cipher.DECRYPT_MODE,convertSecretKey);
+            cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
             result = cipher.doFinal(result);
             System.out.println("bc  des decrypt：" + new String(result));
 

@@ -1,19 +1,19 @@
 package com.chengchenrui.hmac;
 
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
-import org.bouncycastle.crypto.digests.MD5Digest;
-import org.bouncycastle.crypto.macs.HMac;
-import org.bouncycastle.crypto.params.KeyParameter;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+
+import org.apache.commons.codec.binary.Hex;
+import org.bouncycastle.crypto.digests.MD5Digest;
+import org.bouncycastle.crypto.macs.HMac;
+import org.bouncycastle.crypto.params.KeyParameter;
 
 /**
+ * 消息摘要算法
  * @author chengchenrui
  * @version Id: HmacUtils.java, v 0.1 2018/3/28 22:27 chengchenrui Exp $$
  */

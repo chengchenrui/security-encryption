@@ -7,6 +7,11 @@ import org.apache.commons.codec.binary.Base64;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+/**
+ * BASE64加密算法
+ * @author chengchenrui
+ * @version Id: DES3Utils.java, v 0.1 2018/4/30 20:31 chengchenrui Exp $$
+ */
 public class Base64Utils {
 
     private static String src = "chengchenrui security basse64";
