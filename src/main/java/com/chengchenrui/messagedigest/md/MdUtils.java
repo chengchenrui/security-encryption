@@ -1,4 +1,4 @@
-package com.chengchenrui.md;
+package com.chengchenrui.messagedigest.md;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

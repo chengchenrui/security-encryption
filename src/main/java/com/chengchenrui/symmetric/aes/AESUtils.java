@@ -1,4 +1,4 @@
-package com.chengchenrui.aes;
+package com.chengchenrui.symmetric.aes;
 
 import java.security.Key;
 import java.security.SecureRandom;

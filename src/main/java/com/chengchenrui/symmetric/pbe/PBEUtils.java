@@ -1,4 +1,4 @@
-package com.chengchenrui.pbe;
+package com.chengchenrui.symmetric.pbe;
 
 import java.security.Key;
 import java.security.SecureRandom;

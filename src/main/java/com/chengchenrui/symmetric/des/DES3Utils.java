@@ -1,4 +1,4 @@
-package com.chengchenrui.des;
+package com.chengchenrui.symmetric.des;
 
 import java.security.SecureRandom;
 

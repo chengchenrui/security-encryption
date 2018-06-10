@@ -1,4 +1,4 @@
-package com.chengchenrui.hmac;
+package com.chengchenrui.messagedigest.hmac;
 
 import java.security.NoSuchAlgorithmException;
 

@@ -1,4 +1,4 @@
-package com.chengchenrui.sha;
+package com.chengchenrui.messagedigest.sha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
