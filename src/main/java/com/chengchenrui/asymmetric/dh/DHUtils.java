@@ -1,20 +1,24 @@
 package com.chengchenrui.asymmetric.dh;
 
 import java.security.*;
-import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Objects;
 
+import javax.crypto.Cipher;
 import javax.crypto.KeyAgreement;
 import javax.crypto.SecretKey;
 import javax.crypto.interfaces.DHPublicKey;
 import javax.crypto.spec.DHParameterSpec;
+
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * @author chengchenrui
  * @version Id: DHUtils.java, v 0.1 2018.6.10 16:56 chengchenrui Exp $$
  */
 public class DHUtils {
+
+    private static String src = "chengchenrui security dh";
 
     public static void jdkHD() {
         try {
@@ -39,8 +43,8 @@ public class DHUtils {
             //3.秘钥构建
             KeyAgreement receiverKeyAgreement = KeyAgreement.getInstance("DH");
             receiverKeyAgreement.init(receiverPrivateKey);
-            receiverKeyAgreement.doPhase(receiverPrivateKey, true);
-            SecretKey receiverSecretKey = receiverKeyAgreement.generateSecret("DES");
+            receiverKeyAgreement.doPhase(receiverPublicKey, true);
+            SecretKey receiverDesKey = receiverKeyAgreement.generateSecret("DES");
 
             KeyFactory senderKeyFactory = KeyFactory.getInstance("DH");
             x509EncodedKeySpec = new X509EncodedKeySpec(receiverPublicKeyEnc);
@@ -49,15 +53,29 @@ public class DHUtils {
             senderKeyAgreement.init(senderKeyPair.getPrivate());
             senderKeyAgreement.doPhase(senderPublicKey, true);
 
-            SecretKey senderSecretKey = senderKeyAgreement.generateSecret("DES");
+            SecretKey senderDesKey = senderKeyAgreement.generateSecret("DES");
 
-            if (Objects.equals(receiverSecretKey, senderSecretKey)) {
+            if (Objects.equals(receiverDesKey, senderDesKey)) {
                 System.out.println("双方秘钥相同");
             }
 
-        } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException
-                | InvalidKeySpecException | InvalidKeyException e) {
+            // 4.加密
+            Cipher cipher = Cipher.getInstance("DES");
+            cipher.init(Cipher.ENCRYPT_MODE, senderDesKey);
+            byte[] result = cipher.doFinal(src.getBytes());
+            System.out.println("jdk dh encrypt：" + Base64.encodeBase64String(result));
+
+            //5.解密
+            cipher.init(Cipher.DECRYPT_MODE, senderDesKey);
+            result = cipher.doFinal(result);
+            System.out.println("jdk dh decrypt：" + new String(result));
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        jdkHD();
     }
 }
